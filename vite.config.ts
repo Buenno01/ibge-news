@@ -1,5 +1,4 @@
 /// <reference types="vitest" />
-
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -14,6 +13,13 @@ export default defineConfig({
     reporters: ['verbose'],
     coverage: {
       reporter: ['text', 'json', 'html'],
+      include: ['src/**/*'],
+      exclude: [
+        "src/main.tsx",
+        "src/fakes",
+        "src/routes",
+        "src/tests"
+      ],
       provider: 'v8'
     }
 
