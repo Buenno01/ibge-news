@@ -10,4 +10,12 @@ describe('Routes', () => {
 
     expect(highlightedNew).toBeInTheDocument();
   });
+
+  it('should render the SavedNews page', async () => {
+    renderWithRouter(<App />, ['/', '/saved']);
+
+    const highlightedSaved = await screen.findByRole('heading', { name: /saved/i });
+
+    expect(highlightedSaved).toBeInTheDocument();
+  });
 });
