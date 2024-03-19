@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-type ListWrapperProps = {
+interface ListWrapperProps extends React.HTMLAttributes<HTMLUListElement> {
   children: ReactNode;
-};
+}
 
-function ListWrapper({ children }: ListWrapperProps) {
+function ListWrapper({ children, className, ...rest }: ListWrapperProps) {
   return (
-    <ul className="flex gap-2">
+    <ul { ...rest } className={ twMerge('flex gap-2', className) }>
       { children }
     </ul>
   );

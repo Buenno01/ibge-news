@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import LayoutHeader from './LayoutHeader';
+import Header from '../components/Header';
 
 function Layout() {
   return (
-    <div>
-      <LayoutHeader />
+    <>
+      <Header />
       <Outlet />
-    </div>
+    </>
   );
 }
 
