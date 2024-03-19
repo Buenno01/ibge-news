@@ -1,6 +1,12 @@
+import { Outlet } from 'react-router-dom';
+import LayoutHeader from './LayoutHeader';
+
 function Layout() {
   return (
-    <div>Layout</div>
+    <div>
+      <LayoutHeader />
+      <Outlet />
+    </div>
   );
 }
 
