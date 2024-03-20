@@ -8,18 +8,19 @@ type HighlightedNewsProps = {
 };
 
 function HighlightedNews({ news }: HighlightedNewsProps) {
+  const imgSrc = `https://agenciadenoticias.ibge.gov.br/${news.imagens.image_fulltext}`;
   return (
     <News.Root>
       <News.Image
         alt={ news.imagens.image_intro_alt }
-        src={ news.imagens.image_intro }
+        src={ imgSrc }
       />
       <Wrapper className="flex-col gap-2 p-3">
         <Wrapper className="justify-between">
           <p className="text-xs font-semibold text-green-600">
             Notícia mais recente
           </p>
-          <SaveBtn newsId={ news.id } />
+          <SaveBtn news={ news } />
         </Wrapper>
         <News.Title title={ news.titulo } />
         <News.Abstract abstract={ news.introducao } />

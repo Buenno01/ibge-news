@@ -3,17 +3,18 @@ import {
   FaBookmark,
   FaRegBookmark,
 } from 'react-icons/fa6';
+import { NewsType } from '../../@types/NewsType';
 
 interface SaveBtnProps extends React.HTMLAttributes<HTMLButtonElement> {
-  newsId: number;
+  news: NewsType;
 }
 
-function SaveBtn({ newsId }: SaveBtnProps) {
+function SaveBtn({ news }: SaveBtnProps) {
   const [isSaved, setIsSaved] = useState(false);
 
   const handleClick = () => {
     setIsSaved(!isSaved);
-    console.log(`Todo: save btn${newsId}`);
+    console.log(`Todo: save btn${news}`);
   };
 
   return (
