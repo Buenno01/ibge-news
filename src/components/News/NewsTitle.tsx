@@ -1,13 +1,16 @@
-type NewsTitleProps = {
-  title: string;
-};
+import { twMerge } from 'tailwind-merge';
 
-function NewsTitle({ title }: NewsTitleProps) {
+interface NewsTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  Title: string;
+}
+
+function NewsTitle({ Title, className, ...rest }: NewsTitleProps) {
   return (
     <h3
-      className="font-semibold"
+      { ...rest }
+      className={ twMerge('font-semibold', className) }
     >
-      { title }
+      { Title }
     </h3>
   );
 }

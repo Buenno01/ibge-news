@@ -1,13 +1,19 @@
+import { twMerge } from 'tailwind-merge';
 import getDate from '../../utils/getDate';
 
-type NewsDateProps = {
+interface NewsDateProps extends React.HTMLAttributes<HTMLParagraphElement> {
   date: string;
-};
+}
 
-function NewsDate({ date }: NewsDateProps) {
+function NewsDate({ date, className, ...rest }: NewsDateProps) {
   const dateDifference = getDate(date);
   return (
-    <p className="text-gray-500 text-xs">{ dateDifference }</p>
+    <p
+      { ...rest }
+      className={ twMerge('text-gray-500 text-xs', className) }
+    >
+      { dateDifference }
+    </p>
   );
 }
 

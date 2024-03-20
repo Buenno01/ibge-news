@@ -9,7 +9,7 @@ interface SaveBtnProps extends React.HTMLAttributes<HTMLButtonElement> {
   news: NewsType;
 }
 
-function SaveBtn({ news }: SaveBtnProps) {
+function SaveBtn({ news, ...rest }: SaveBtnProps) {
   const [isSaved, setIsSaved] = useState(false);
 
   const handleClick = () => {
@@ -18,7 +18,11 @@ function SaveBtn({ news }: SaveBtnProps) {
   };
 
   return (
-    <button className="text-green-600 text-xl" onClick={ handleClick }>
+    <button
+      { ...rest }
+      className="text-green-600 text-xl"
+      onClick={ handleClick }
+    >
       { isSaved ? <FaBookmark /> : <FaRegBookmark />}
     </button>
   );

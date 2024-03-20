@@ -1,10 +1,17 @@
-type NewsAbstractProps = {
-  abstract: string;
-};
+import { twMerge } from 'tailwind-merge';
 
-function NewsAbstract({ abstract }: NewsAbstractProps) {
+interface NewsAbstractProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  abstract: string;
+}
+
+function NewsAbstract({ abstract, className, ...rest }: NewsAbstractProps) {
   return (
-    <p className="overflow-hidden line-clamp-3 overflow-ellipsis">{ abstract }</p>
+    <p
+      { ...rest }
+      className={ twMerge('overflow-hidden line-clamp-3 overflow-ellipsis', className) }
+    >
+      { abstract }
+    </p>
   );
 }
 
