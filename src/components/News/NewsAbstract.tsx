@@ -1,10 +1,15 @@
-type NewsAbstractProps = {
+interface NewsAbstractProps extends React.HTMLAttributes<HTMLParagraphElement> {
   abstract: string;
-};
+}
 
-function NewsAbstract({ abstract }: NewsAbstractProps) {
+function NewsAbstract({ abstract, ...rest }: NewsAbstractProps) {
   return (
-    <p className="overflow-hidden line-clamp-3 overflow-ellipsis">{ abstract }</p>
+    <p
+      { ...rest }
+      className="overflow-hidden line-clamp-3 overflow-ellipsis"
+    >
+      { abstract }
+    </p>
   );
 }
 

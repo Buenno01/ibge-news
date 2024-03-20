@@ -1,13 +1,14 @@
-type NewsTitleProps = {
-  title: string;
-};
+interface NewsTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  Title: string;
+}
 
-function NewsTitle({ title }: NewsTitleProps) {
+function NewsTitle({ Title, ...rest }: NewsTitleProps) {
   return (
     <h3
+      { ...rest }
       className="font-semibold"
     >
-      { title }
+      { Title }
     </h3>
   );
 }

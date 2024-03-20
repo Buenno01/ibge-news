@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 
-type NewsLinkProps = {
+interface NewsLinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   href: string;
-};
+}
 
-function NewsLink({ href }: NewsLinkProps) {
+function NewsLink({ href, ...rest }: NewsLinkProps) {
   return (
     <Link
+      { ...rest }
       to={ href }
       target="_blank"
       className="bg-green-500 px-2 py-1

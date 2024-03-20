@@ -1,13 +1,18 @@
 import getDate from '../../utils/getDate';
 
-type NewsDateProps = {
+interface NewsDateProps extends React.HTMLAttributes<HTMLParagraphElement> {
   date: string;
-};
+}
 
-function NewsDate({ date }: NewsDateProps) {
+function NewsDate({ date, ...rest }: NewsDateProps) {
   const dateDifference = getDate(date);
   return (
-    <p className="text-gray-500 text-xs">{ dateDifference }</p>
+    <p
+      { ...rest }
+      className="text-gray-500 text-xs"
+    >
+      { dateDifference }
+    </p>
   );
 }
 

@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
 
-type NewsRootProps = {
+interface NewsRootProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-};
+}
 
-function NewsRoot({ children }: NewsRootProps) {
+function NewsRoot({ children, ...rest }: NewsRootProps) {
   return (
     <div
+      { ...rest }
       className="flex flex-col mx-auto text-sm
     border rounded-lg overflow-hidden w-80 shadow-sm"
     >

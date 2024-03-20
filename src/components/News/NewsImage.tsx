@@ -1,12 +1,11 @@
-type NewsImageProps = {
-  src: string;
-  alt: string;
-};
+interface NewsImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 
-function NewsImage({ src, alt }: NewsImageProps) {
+}
+
+function NewsImage({ src, alt, ...rest }: NewsImageProps) {
   return (
     <div className="w-full h-32 bg-red-200 overflow-hidden">
-      <img src={ src } alt={ alt } />
+      <img { ...rest } src={ src } alt={ alt } />
     </div>
   );
 }
