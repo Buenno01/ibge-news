@@ -8,7 +8,7 @@ type WrapperProps = {
 
 function Wrapper({ children, className = undefined }: WrapperProps) {
   return (
-    <div className={ twMerge('flex', className) }>
+    <div className={ twMerge('flex items-center w-full', className) }>
       { children }
     </div>
   );
