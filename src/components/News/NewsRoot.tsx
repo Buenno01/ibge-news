@@ -1,15 +1,16 @@
 import { ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface NewsRootProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-function NewsRoot({ children, ...rest }: NewsRootProps) {
+function NewsRoot({ children, className, ...rest }: NewsRootProps) {
   return (
     <div
       { ...rest }
-      className="flex flex-col mx-auto text-sm
-    border rounded-lg overflow-hidden w-80 shadow-sm"
+      className={ twMerge(`flex flex-col mx-auto text-sm
+    border rounded-lg overflow-hidden w-80 shadow-sm`, className) }
     >
       {children}
     </div>

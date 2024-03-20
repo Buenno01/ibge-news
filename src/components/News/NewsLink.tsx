@@ -14,7 +14,8 @@ function NewsLink({ href, ...rest }: NewsLinkProps) {
       text-white font-medium rounded-md
       active:bg-green-400
       hover:bg-green-700 transition-colors
-      shadow-md"
+      shadow-md
+      lg:text-base"
     >
       Leia a notícia aqui
     </Link>

@@ -7,7 +7,14 @@ export default {
     './src/**/**/*.tsx',
   ],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        '60vh': '60vh',
+      },
+      minHeight: {
+        '60vh': '60vh',
+      },
+    },
   },
   plugins: [],
 }
