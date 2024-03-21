@@ -5,6 +5,7 @@ const initialState: SearchNewsContextType = {
   params: { type: '', page: 1 },
   setParams: () => {},
   handleFilter: () => {},
+  handlePage: () => {},
 };
 
 export const SearchNewsContext = createContext<SearchNewsContextType>(initialState);

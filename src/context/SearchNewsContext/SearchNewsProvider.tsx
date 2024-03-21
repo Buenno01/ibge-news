@@ -14,10 +14,16 @@ function SearchNewsProvider({ children }: SearchNewsProviderProps) {
     if (type !== params.type) setParams({ ...params, type });
   };
 
+  const handlePage = (page: number) => {
+    if (page < 0 && params.page === 1) return;
+    setParams({ ...params, page: params.page + page });
+  };
+
   const value: SearchNewsContextType = {
     params,
     setParams,
     handleFilter,
+    handlePage,
   };
   return (
     <SearchNewsContext.Provider value={ value }>
