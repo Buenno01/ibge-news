@@ -10,6 +10,7 @@ export default {
     extend: {
       height: {
         '60vh': '60vh',
+        '45vh': '45vh',
       },
       minHeight: {
         '60vh': '60vh',
