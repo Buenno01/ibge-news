@@ -43,6 +43,11 @@ function NewsListProvider({ children }: NewsListProviderProps) {
 
   useEffect(() => {
     if (params.type === 'saved') {
+      if (savedNews.length === 0) {
+        setError('Nenhuma notícia salva');
+      } else {
+        setError(null);
+      }
       setNews(savedNews);
     }
   }, [savedNews, params]);
