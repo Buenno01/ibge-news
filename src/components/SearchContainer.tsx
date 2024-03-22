@@ -4,10 +4,10 @@ import Filters from './Filters';
 import PageIndex from './PageIndex';
 
 type SearchContainerProps = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
-function SearchContainer({ children }: SearchContainerProps) {
+function SearchContainer({ children = '' }: SearchContainerProps) {
   return (
     <Wrapper className="flex flex-col w-full">
       <Filters />

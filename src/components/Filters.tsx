@@ -32,6 +32,7 @@ function Filters() {
             Text={ button.Text }
             className={ params.type === button.paramType ? activeButton : '' }
             onClick={ () => handleFilter(button.paramType) }
+            data-testid={ `filter-btn-${button.paramType}` }
           />
         ))
         }

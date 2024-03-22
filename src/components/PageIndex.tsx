@@ -8,13 +8,15 @@ function PageIndex() {
       <button
         onClick={ () => handlePage(-1) }
         aria-label="página anterior"
+        data-testid="previous-page"
       >
         {'<<'}
       </button>
-      <p className="w-7 text-center">{params.page}</p>
+      <p data-testid="page-index" className="w-7 text-center">{params.page}</p>
       <button
         onClick={ () => handlePage(1) }
         aria-label="próxima página"
+        data-testid="next-page"
       >
         {'>>'}
       </button>
