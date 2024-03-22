@@ -1,4 +1,5 @@
 import NewsListProvider from './NewsListContext/NewsListProvider';
+import SavedNewsProvider from './SavedNewsContext/SavedNewsProvider';
 import SearchNewsProvider from './SearchNewsContext/SearchNewsProvider';
 
 type CombinedProvidersProps = {
@@ -8,9 +9,11 @@ type CombinedProvidersProps = {
 function CombinedProviders({ children }: CombinedProvidersProps) {
   return (
     <SearchNewsProvider>
-      <NewsListProvider>
-        {children}
-      </NewsListProvider>
+      <SavedNewsProvider>
+        <NewsListProvider>
+          {children}
+        </NewsListProvider>
+      </SavedNewsProvider>
     </SearchNewsProvider>
   );
 }

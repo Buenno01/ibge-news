@@ -3,6 +3,8 @@ import { screen } from '@testing-library/react';
 import { mockEndpoints } from './mocks/mockEndpoints';
 import { renderWithRouterAndContext } from './utils';
 import SearchContainer from '../components/SearchContainer';
+import mockLocalStorage from './mocks/mockLocalStorage';
+import Home from '../pages/Home';
 
 const DEFAULT_ENDPOINT = 'https://servicodados.ibge.gov.br/api/v3/noticias/?qtd=9&page=1';
 const SECOND_PAGE_DEFAULT_ENDPOINT = 'https://servicodados.ibge.gov.br/api/v3/noticias/?qtd=9&page=2';
@@ -63,7 +65,20 @@ describe('SearchContainer', () => {
     expect(spy).toHaveBeenLastCalledWith(DEFAULT_ENDPOINT);
   });
 
-  it.todo('should render the saved news when the filter is clicked');
+  it('should get from localStorage the saved ids when the filter is clicked', async () => {
+    const [spyStorage, storage] = mockLocalStorage.savedNews();
+    mockEndpoints();
+    renderWithRouterAndContext(<Home />);
+    const { saved } = getFilterButtons();
+
+    expect(spyStorage).toHaveBeenCalledTimes(1);
+
+    await userEvent.click(saved);
+    const allCards = screen.getAllByTestId(/-new-card/);
+
+    storage.forEach((item) => expect(screen.getByText(item.titulo)).toBeInTheDocument());
+    expect(allCards).toHaveLength(storage.length);
+  });
 
   it('should fetch the second page when the button is clicked', async () => {
     const spy = mockEndpoints();

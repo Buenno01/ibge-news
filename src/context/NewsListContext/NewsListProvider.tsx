@@ -3,8 +3,9 @@ import { NewsListContext } from '.';
 import { NewsListContextType } from '../../@types/NewsListContextType';
 import { NewsType } from '../../@types/NewsType';
 import { useSearchNewsContext } from '../SearchNewsContext';
+import { useSavedNewsContext } from '../SavedNewsContext';
 import getEndPoint from '../../utils/getEndPoint';
-import formatApiData from '../../utils/formatApiData';
+import fetchNews from '../../utils/fetchNews';
 
 type NewsListProviderProps = {
   children: ReactNode;
@@ -12,39 +13,51 @@ type NewsListProviderProps = {
 
 function NewsListProvider({ children }: NewsListProviderProps) {
   const { params } = useSearchNewsContext();
+  const { savedNews } = useSavedNewsContext();
   const [news, setNews] = useState<NewsType[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchNews = async (endpoint: string) => {
-      console.log('fetchNews', endpoint);
+    const endpoint = getEndPoint(params);
 
+    const fetchDefault = async () => {
       try {
         setIsFetching(true);
         setError(null);
-        const response = await fetch(endpoint);
-        const data = await response.json();
-        setNews(formatApiData(data.items));
+        const response = await fetchNews(endpoint);
+        setNews(response);
       } catch (err) {
-        setError('Failed to fetch');
+        if (err instanceof Error) {
+          setError(err.message);
+        }
       } finally {
         setIsFetching(false);
       }
     };
 
-    if (params.type === 'saved') {
-      // Fetch saved news from local storage
-    } else {
-      fetchNews(getEndPoint(params));
+    if (params.type !== 'saved') {
+      fetchDefault();
     }
   }, [params]);
+
+  useEffect(() => {
+    if (params.type === 'saved') {
+      if (savedNews.length === 0) {
+        setError('Nenhuma notícia salva');
+      } else {
+        setError(null);
+      }
+      setNews(savedNews);
+    }
+  }, [savedNews, params]);
 
   const value: NewsListContextType = {
     news,
     isFetching,
     error,
   };
+
   return (
     <NewsListContext.Provider value={ value }>
       { children }

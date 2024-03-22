@@ -1,27 +1,24 @@
-import { useState } from 'react';
 import {
   FaBookmark,
   FaRegBookmark,
 } from 'react-icons/fa6';
 import { NewsType } from '../../@types/NewsType';
+import { useSavedNewsContext } from '../../context/SavedNewsContext';
 
 interface SaveBtnProps extends React.HTMLAttributes<HTMLButtonElement> {
   news: NewsType;
 }
 
 function SaveBtn({ news, ...rest }: SaveBtnProps) {
-  const [isSaved, setIsSaved] = useState(false);
-
-  const handleClick = () => {
-    setIsSaved(!isSaved);
-    console.log(`Todo: save btn${news}`);
-  };
+  const { savedNews, toggleSavedNew } = useSavedNewsContext();
+  const isSaved = savedNews
+    .some(({ id }) => news.id === id);
 
   return (
     <button
       { ...rest }
       className="text-green-600 text-xl"
-      onClick={ handleClick }
+      onClick={ () => toggleSavedNew(news) }
     >
       { isSaved ? <FaBookmark /> : <FaRegBookmark />}
     </button>
