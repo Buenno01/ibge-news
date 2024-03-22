@@ -1,6 +1,6 @@
-import { SavedNew } from './SavedNew';
+import { NewsType } from './NewsType';
 
 export type SavedNewsContextType = {
-  savedNews: SavedNew[];
-  toggleSavedNew: (idProduto: number, id: number) => void;
+  savedNews: NewsType[];
+  toggleSavedNew: (news: NewsType) => void;
 };

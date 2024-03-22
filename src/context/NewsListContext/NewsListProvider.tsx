@@ -19,7 +19,7 @@ function NewsListProvider({ children }: NewsListProviderProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const endpoint = getEndPoint(params, savedNews);
+    const endpoint = getEndPoint(params);
 
     const fetchDefault = async () => {
       try {
@@ -36,30 +36,16 @@ function NewsListProvider({ children }: NewsListProviderProps) {
       }
     };
 
-    const fetchSaved = async () => {
-      const savedNewsIds = savedNews.map((savedNew) => savedNew[1]);
-      try {
-        setIsFetching(true);
-        setError(null);
-        const response = await fetchNews(endpoint);
-        const filteredNews = response
-          .filter((newItem) => savedNewsIds.includes(newItem.id));
-        setNews(filteredNews);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        }
-      } finally {
-        setIsFetching(false);
-      }
-    };
-
-    if (params.type === 'saved') {
-      fetchSaved();
-    } else {
+    if (params.type !== 'saved') {
       fetchDefault();
     }
   }, [params]);
+
+  useEffect(() => {
+    if (params.type === 'saved') {
+      setNews(savedNews);
+    }
+  }, [savedNews, params]);
 
   const value: NewsListContextType = {
     news,

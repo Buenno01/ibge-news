@@ -10,16 +10,15 @@ interface SaveBtnProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 function SaveBtn({ news, ...rest }: SaveBtnProps) {
-  const { produto_id: idProduto, id } = news;
   const { savedNews, toggleSavedNew } = useSavedNewsContext();
   const isSaved = savedNews
-    .some((savedNew) => savedNew[0] === idProduto && savedNew[1] === id);
+    .some(({ id }) => news.id === id);
 
   return (
     <button
       { ...rest }
       className="text-green-600 text-xl"
-      onClick={ () => toggleSavedNew(idProduto, id) }
+      onClick={ () => toggleSavedNew(news) }
     >
       { isSaved ? <FaBookmark /> : <FaRegBookmark />}
     </button>
