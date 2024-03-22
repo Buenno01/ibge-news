@@ -26,7 +26,7 @@ function NewCard({ news, loading, index = 0 }: NewCardProps) {
             <Wrapper className="flex-col gap-2 justify-between h-full border-b p-2">
               <News.Title
                 Title={ news.titulo }
-                data-testid={ `${index}-newnew-title` }
+                data-testid={ `${index}-new-title` }
                 className="lg:text-xl line-clamp-3"
               />
               <News.Abstract
@@ -44,7 +44,7 @@ function NewCard({ news, loading, index = 0 }: NewCardProps) {
               </Wrapper>
             </Wrapper>
             <Wrapper className="h-fit p-2">
-              <SaveBtn news={ news } />
+              <SaveBtn data-testid={ `${index}-new-save-btn` } news={ news } />
             </Wrapper>
           </>
         )
