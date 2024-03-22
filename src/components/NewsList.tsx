@@ -7,6 +7,7 @@ function NewsList() {
   const { news, error, isFetching } = useNewsListContext();
   return (
     <ListWrapper
+      data-testid="news-list"
       className="gap-y- xl:grid xl:grid-cols-3 md:container
           md:mx-auto sm:gap-y-10 relative min-h-20"
     >
