@@ -7,7 +7,7 @@ interface ListWrapperProps extends React.HTMLAttributes<HTMLUListElement> {
 
 function ListWrapper({ children, className, ...rest }: ListWrapperProps) {
   return (
-    <ul { ...rest } className={ twMerge('flex gap-2', className) }>
+    <ul { ...rest } className={ twMerge('flex flex-wrap', className) }>
       { children }
     </ul>
   );

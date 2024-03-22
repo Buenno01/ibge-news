@@ -66,6 +66,4 @@ describe('Home', () => {
     const errorMessage = await screen.findByTestId('highlighted-new-error');
     expect(errorMessage).toBeInTheDocument();
   });
-
-  it.todo('should fetch 10 news by default');
 });
