@@ -5,23 +5,17 @@ import Wrapper from './atoms/Wrapper';
 
 type NewCardProps = {
   news: NewsType;
-  loading: boolean;
   index?: number;
 };
 
-function NewCard({ news, loading, index = 0 }: NewCardProps) {
+function NewCard({ news, index = 0 }: NewCardProps) {
   return (
     <News.Root
       data-testid={ `${index}-new-card` }
-      className="flex flex-col px-3 py-1 w-72 h-60 lg:w-96 lg:h-45vh justify-between"
+      className="flex flex-col px-3 py-1 w-72 h-60 lg:w-385 lg:h-370 justify-between"
     >
       {
-        loading && (
-          <p data-testid={ `${index}-new-loading` }>Loading...</p>
-        )
-      }
-      {
-        (!loading && news) && (
+        (news) && (
           <>
             <Wrapper className="flex-col gap-2 justify-between h-full border-b p-2">
               <News.Title

@@ -11,6 +11,10 @@ export default {
       height: {
         '60vh': '60vh',
         '45vh': '45vh',
+        '370': '370px',
+      },
+      width: {
+        '385': '385px',
       },
       minHeight: {
         '60vh': '60vh',
