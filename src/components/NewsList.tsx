@@ -1,5 +1,6 @@
 import { useNewsListContext } from '../context/NewsListContext';
 import NewCard from './NewCard';
+import NewCardLoading from './NewCardLoading';
 import ListWrapper from './atoms/ListWrapper';
 
 function NewsList() {
@@ -9,6 +10,13 @@ function NewsList() {
       className="gap-y- xl:grid xl:grid-cols-3 md:container
           md:mx-auto sm:gap-y-10 relative min-h-20"
     >
+      {
+        isFetching && (
+          Array.from({ length: 9 }).map((_, index) => (
+            <NewCardLoading key={ index } />
+          ))
+        )
+      }
       {
         (news.length === 0 && !isFetching) && (
           <p

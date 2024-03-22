@@ -12,7 +12,7 @@ function NewCard({ news, index = 0 }: NewCardProps) {
   return (
     <News.Root
       data-testid={ `${index}-new-card` }
-      className="flex flex-col px-3 py-1 w-72 h-60 lg:w-96 lg:h-45vh justify-between"
+      className="flex flex-col px-3 py-1 w-72 h-60 lg:w-385 lg:h-370 justify-between"
     >
       {
         (news) && (
