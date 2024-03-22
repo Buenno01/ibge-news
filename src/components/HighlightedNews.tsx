@@ -1,4 +1,5 @@
 import useFetch from '../hooks/useFetch';
+import HighlightedNewsLoading from './HighlightedNewsLoading';
 import News from './News';
 import SaveBtn from './atoms/SaveBtn';
 import Wrapper from './atoms/Wrapper';
@@ -11,17 +12,12 @@ function HighlightedNews() {
   const news = (data && data[0]) ? data[0] : null;
 
   const BASE_IMG_URL = 'https://agenciadenoticias.ibge.gov.br/';
-
+  if (loading) return HighlightedNewsLoading();
   return (
     <News.Root
       data-testid="highlighted-new"
       className="lg:flex-row lg:w-11/12 xl:w-9/12 lg:h-60vh md:w-2/3 sm:w-11/12"
     >
-      {
-        loading && (
-          <p data-testid="highlighted-new-loading">Loading...</p>
-        )
-      }
       {
         (!loading && news) && (
           <>
