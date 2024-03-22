@@ -1,3 +1,4 @@
-export type SavedNews = {
-  [idproduto: number]: number[];
-};
+type IdProduto = number;
+type Id = number;
+
+export type SavedNew = [IdProduto, Id];
