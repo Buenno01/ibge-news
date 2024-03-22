@@ -12,7 +12,7 @@ function HighlightedNews() {
   const news = (data && data[0]) ? data[0] : null;
 
   const BASE_IMG_URL = 'https://agenciadenoticias.ibge.gov.br/';
-  if (loading) return HighlightedNewsLoading();
+  if (loading) return <HighlightedNewsLoading />;
   return (
     <News.Root
       data-testid="highlighted-new"

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 function HighlightedNewsLoading() {
   return (
     <motion.div
-      data-testid="news-list-loading"
+      data-testid="highlighted-new-loading"
       className="lg:w-11/12 xl:w-9/12 lg:h-60vh md:w-2/3 sm:w-11/12
       border rounded-lg w-80 shadow-sm"
       initial={ {
