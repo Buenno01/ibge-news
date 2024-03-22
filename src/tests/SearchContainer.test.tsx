@@ -1,13 +1,16 @@
 import { userEvent } from '@testing-library/user-event';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { mockEndpoints } from './mocks/mockEndpoints';
 import { renderWithRouterAndContext } from './utils';
 import SearchContainer from '../components/SearchContainer';
+import Home from '../pages/Home';
+import mockLocalStorage from './mocks/mockLocalStorage';
 
 const DEFAULT_ENDPOINT = 'https://servicodados.ibge.gov.br/api/v3/noticias/?qtd=9&page=1';
 const SECOND_PAGE_DEFAULT_ENDPOINT = 'https://servicodados.ibge.gov.br/api/v3/noticias/?qtd=9&page=2';
 const RELEASE_ENDPOINT = 'https://servicodados.ibge.gov.br/api/v3/noticias/?qtd=9&page=1&tipo=release';
 const NEWS_ENDPOINT = 'https://servicodados.ibge.gov.br/api/v3/noticias/?qtd=9&page=1&tipo=noticia';
+const SAVED_NEWS_BASE_ENDPOINT = 'https://servicodados.ibge.gov.br/api/v3/noticias/?idproduto=';
 
 const getFilterButtons = () => ({
   recent: screen.getByTestId('filter-btn-'),
@@ -63,7 +66,19 @@ describe('SearchContainer', () => {
     expect(spy).toHaveBeenLastCalledWith(DEFAULT_ENDPOINT);
   });
 
-  it.todo('should render the saved news when the filter is clicked');
+  it('should fetch the saved news ids when the filter is clicked', async () => {
+    const [spyStorage, storage] = mockLocalStorage.savedNews();
+    const spy = mockEndpoints();
+    renderWithRouterAndContext(<Home />);
+    const { saved } = getFilterButtons();
+
+    await userEvent.click(saved);
+
+    await waitFor(() => {
+      expect(spyStorage).toHaveBeenLastCalledWith('savedNews');
+      expect(spy).toHaveBeenLastCalledWith(`${SAVED_NEWS_BASE_ENDPOINT}${storage.map((item) => item[0]).join('|')}`);
+    });
+  });
 
   it('should fetch the second page when the button is clicked', async () => {
     const spy = mockEndpoints();
