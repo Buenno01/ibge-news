@@ -11,7 +11,7 @@ function SearchNewsProvider({ children }: SearchNewsProviderProps) {
   const [params, setParams] = useState<ParamsType>({ type: '', page: 1 });
 
   const handleFilter = (type: SearchType) => {
-    if (type !== params.type) setParams({ ...params, type });
+    if (type !== params.type) setParams({ page: 1, type });
   };
 
   const handlePage = (page: number) => {
