@@ -1,7 +1,5 @@
 import { vi } from 'vitest';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 import { mockEndpoints } from './mocks/mockEndpoints';
 import { renderWithRouter } from './utils';
 import Home from '../pages/Home';
@@ -17,19 +15,6 @@ const getHighlightedNewElements = async () => ({
   date: await screen.findByTestId('highlighted-new-date'),
   link: await screen.findByTestId('highlighted-new-link'),
   saveBtn: await screen.findByTestId('highlighted-new-save-btn'),
-});
-
-const getFilterButtons = () => ({
-  recent: screen.getByTestId('filter-btn-'),
-  release: screen.getByTestId('filter-btn-release'),
-  news: screen.getByTestId('filter-btn-news'),
-  saved: screen.getByTestId('filter-btn-saved'),
-});
-
-const getPageIndex = () => ({
-  previous: screen.getByTestId('previous-page'),
-  index: screen.getByTestId('page-index'),
-  next: screen.getByTestId('next-page'),
 });
 
 describe('Home', () => {
