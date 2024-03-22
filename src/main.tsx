@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './main.css';
-import SearchNewsProvider from './context/SearchNewsContext/SearchNewsProvider';
+import CombinedProviders from './context/CombinedProviders';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <SearchNewsProvider>
+    <CombinedProviders>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </SearchNewsProvider>
+    </CombinedProviders>
   </React.StrictMode>,
 );
