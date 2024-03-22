@@ -5,11 +5,13 @@ import { ApiReturn } from '../../@types/ApiReturn';
 import UnfilteredList from './UnfilteredList';
 import ReleasesList from './ReleasesList';
 import SecondPageList from './SecondPageList';
+import getSavedMock from './getSavedMock';
 
 const DEFAULT_ENDPOINT = /https:\/\/servicodados.ibge.gov.br\/api\/v3\/noticias\/\?qtd=9&page=1/;
 const SECOND_PAGE_DEFAULT_ENDPOINT = /https:\/\/servicodados.ibge.gov.br\/api\/v3\/noticias\/\?qtd=9&page=2/;
 const RELEASE_ENDPOINT = /https:\/\/servicodados.ibge.gov.br\/api\/v3\/noticias\/\?qtd=9&page=1&tipo=release/;
 const NEWS_ENDPOINT = /https:\/\/servicodados.ibge.gov.br\/api\/v3\/noticias\/\?qtd=9&page=1&tipo=noticia/;
+const ID_PRODUTO = /idproduto=/;
 
 export const mockEndpoints = (error = false) => vi
   .spyOn(global, 'fetch')
@@ -38,6 +40,8 @@ function getReturnedValue(endpoint: string): ApiReturn {
       return ReleasesList;
     case NEWS_ENDPOINT.test(endpoint):
       return NewsList;
+    case ID_PRODUTO.test(endpoint):
+      return getSavedMock(endpoint.split('=')[1]);
     default:
       throw new Error('Failed to fetch');
   }
